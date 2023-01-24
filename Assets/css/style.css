@@ -59,10 +59,27 @@ h1 {
     margin-top: 25px;
 }
 
+.Question{
+    font-size: 30px;
+    margin-left: 350px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
 .start-button {
     font-size: 25px;
     padding: 1%;
     border-radius: 15px;
+}
+.answer1,
+.answer2,
+.answer3,
+.answer4 {
+    margin-left: 350px;
+    font-size: 15px;
+    line-height: 2;
+    display: block;
+    margin-bottom: 5px;
+
 }
 
 .option_list{
@@ -89,3 +106,4 @@ h1 {
 .right-wrong.wrong {
     color: red;
 }
+
