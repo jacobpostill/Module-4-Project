@@ -13,25 +13,28 @@
         <div id="highscores">View Highscores</div>
         <nav>
             <ul>
-                <div id="time-title">Time Left: </div>
-                <div id="timer" class="timer">15</div>
+                <div id="time-title">Time Left: <span id="timer" class="timer"></span></div>
             </ul>
         </nav>
     </header>
 
-    <section>
+    <section class="quiz_intro">
         <h1>Coding Quiz</h1>
         <p id="p1">Answer as many questions correctly before the time runs out.</p1>
         <p1 id="p1">For each correct answer you will recieve points, for each incorrect answer you will lose points</p1>
         <p1 id="p1">Good luck and don't forget to record your score!</p1>
-        <div id="start-button"><button class="start-button">Start</button></div>
+        <button id="start-button" class="start-button">Start</button>
     </section>
     
     <div class="Quiz">
-        <div class="number"></div>
-        <div class="Question"></div>
-        <div class="options"></div>
-        <div class ="indicator"></div>
+        <div class="Question">What is 4 + 4?</div>
+        <div id="answer-options" class="answer-options">
+            <button class="answer1" id="answer1">Answer 1</button>
+            <button class="answer2" id="answer2">Answer 2</button>
+            <button class="answer3" id="answer3">Answer 3</button>
+            <button class="answer4" id="answer4">Answer 4</button>
+        </div>
+        <div id="right-wrong" class="right-wrong none">Correct</div>
     </div>
 
     <div class="done">

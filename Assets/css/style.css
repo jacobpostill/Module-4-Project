@@ -64,3 +64,28 @@ h1 {
     padding: 1%;
     border-radius: 15px;
 }
+
+.option_list{
+    padding: 20px 0px;
+    display: block;   
+}
+.quiz_intro{
+    margin-bottom: 10px;
+}
+
+.none{
+    display: none;
+}
+
+.right-wrong {
+    font-size: 30px;
+}
+
+.right-wrong.right {
+    color: green;
+    
+}
+
+.right-wrong.wrong {
+    color: red;
+}
