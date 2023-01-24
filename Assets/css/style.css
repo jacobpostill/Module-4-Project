@@ -96,16 +96,16 @@ h1 {
     display: none;
 }
 
-.right-wrong {
+.rightWrong {
     font-size: 30px;
 }
 
-.right-wrong.right {
+.rightWrong.right {
     color: green;
     
 }
 
-.right-wrong.wrong {
+.rightWrong.wrong {
     color: red;
 }
 

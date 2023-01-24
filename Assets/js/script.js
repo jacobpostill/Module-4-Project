@@ -12,26 +12,27 @@ let score = 0;
 let timeFinal = 0
 let timerInterval;
 let timRemaining_2 = 3;
+const rightWrong = document.getElementById("rightWrong");
 
 
 const quiz = [
     {
-        question:"What is 4 + 4?",
-        options:["8","4","6","18"],
-        answer:"8"
+        question:"Which command will stop an infinite loop?",
+        options:["Alt - C","Shift - C","Esc","Ctrl - C"],
+        answer:"Ctrl - C"
     },
     {
-        question:"What is 8 + 8?",
-        options:["8","4","6","16"],
-        answer:"8"
+        question:"_______ is the process of finding errors and fixing them within a program.",
+        options:["Compiling","Executing","Debugging","Scanning"],
+        answer:"Debugging"
     },    {
-        question:"What is 3 + 3?",
-        options:["8","4","6","18"],
-        answer:"8"
+        question:"Sal needs to execute a section of code ten times within a program. Compare the selection structures below and select which one meets the needs identified.",
+        options:["If-Else","For","While","If"],
+        answer:"For"
     },    {
-        question:"What is 2 + 2?",
-        options:["8","4","6","18"],
-        answer:"8"
+        question:"A loop that never ends is referred to as a(n)_________.",
+        options:["While loop","Infinite loop","Recursive loop","for loop"],
+        answer:"Infinite loop"
     },    {
         question:"What is 9 + 9?",
         options:["8","4","6","18"],
@@ -103,7 +104,8 @@ function start() {
 }
 
 function answer(event) {
-    right-wrong.classList.remove('wrong','right');
+    right-wrong.classList.remove('wrong');
+    right-wrong.classList.remove('right');
     event.target.innerText;
     console.log(event.target.innerText);
     if (currQuestion.answers[0] == event.target.innerText) {
