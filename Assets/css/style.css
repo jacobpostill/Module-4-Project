@@ -63,7 +63,8 @@ h1 {
     font-size: 30px;
     margin-left: 350px;
     margin-bottom: 10px;
-    text-decoration: underline;
+    border-bottom: solid 1px;
+    width: 400px;
 }
 .start-button {
     font-size: 25px;
@@ -79,6 +80,7 @@ h1 {
     line-height: 2;
     display: block;
     margin-bottom: 5px;
+    width: 200px;
 
 }
 
