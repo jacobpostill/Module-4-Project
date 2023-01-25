@@ -9,7 +9,6 @@ let timer = document.getElementById("timer");
 let games =-1
 let timeRemaining = 75;
 let counter;
-let currQuestion
 let score = 0;
 let timeFinal = 0
 let timerInterval;
@@ -18,11 +17,17 @@ const rightWrong = document.getElementById("rightWrong");
 const done = document.querySelector(".done");
 const initialSubmit = document.getElementById("initialSubmit");
 const timeTitle = document.getElementById("timeTitle");
+let total = 0;
+const finalScore = document.getElementById("finalScore");
+const scoreboard = document.querySelector(".scoreboard");
+const highscore = document.getElementById("highscore");
+const players = document.getElementById("players");
 
 
 Quiz.classList.add("none");
 done.classList.add("none");
 timeTitle.classList.add("none");
+scoreboard.classList.add("none");
 
 const quiz = [
     {
@@ -49,7 +54,7 @@ const quiz = [
     },    {
         question:"What is 1 + 1?",
         options:["8","4","6","2"],
-        answer:"8"
+        answer:"2"
     }
 
 ]
@@ -80,15 +85,16 @@ answer2.addEventListener("click", answer);
 answer3.addEventListener("click", answer);
 answer4.addEventListener("click", answer);
 
+var currQuestion;
 function nextQuestion() {
     if (games===5) {
         timerFinal = timeRemaining;
         clearInterval(timerInterval);
         return initials();    
     }
-    games++
+    games++;
     //questionSelector = random(games);
-    let currQuestion = quiz[randomQuestion[games]]
+    currQuestion = quiz[randomQuestion[games]];
     question.innerText = currQuestion.question;
     let randomAnswerGen = [0, 1, 2, 3];
     randomAnswerGen.sort((a, b) => 0.5 - Math.random());
@@ -117,14 +123,16 @@ function answer(event) {
     rightWrong.classList.remove('wrong','right');
     event.target.innerText;
     console.log(event.target.innerText);
-    if (quiz.answer == event.target.innerText) {
+    if (currQuestion.answer == event.target.innerText) {
         total++;
         answerText = "Correct!";
+        rightWrong.textContent = answerText 
         rightWrong.classList.add('right');
     } else {
         timeRemaining = timeRemaining - 7;
         rightWrong.classList.add('wrong');
         answerText = "Wrong!";
+        rightWrong.textContent = answerText 
     }
     nextQuestion();
     answerDisplay();
@@ -143,12 +151,12 @@ function answerDisplay() {
     }, 1000)
 }
 
-function localStorage() {
+function scoreStorage() {
     let highScoreCatalogue = JSON.parse(localStorage.getItem("highScore")) || [];
     let highScore = {
         totalHighscore: total,
-        finalTimeHighscore: finalTime,
-        initalsHighscire: initialsValue
+        finalTimeHighscore: timeFinal,
+        initalsHighscire: Value
     };
     document.getElementById("initials").value = "";
     if (highScore.initalsHighscire !== "") {
@@ -159,36 +167,25 @@ function localStorage() {
 
 function renderHighScores() {
     done.classList.add("none");
+    scoreboard.classList.remove("none");
     let getHighScore = JSON.parse(localStorage.getItem("highScore"));
-    questionElement.innerText = "HighScores";
-    initals.classList.add("hide");
-    welcomeQuiz.classList.add("hide");
-    restartButton.addEventListener("click", init);
-    restartButton.classList.remove("hide");
-    const ulAppend = document.getElementById("ulAppend");
-    ulAppend.classList.remove("hide");
-
-    let ul = document.createElement("ul");
-    ulAppend.innerText = "";
-    ulAppend.appendChild(ul);
-    
-        for (let i = 0; i < getHighScore.length; i++ ) {
-            console.log(getHighScore.length);
-            let showHighScore = getHighScore[i];
-
-            let li = document.createElement("li");
-            li.textContent = `Initials: ${showHighScore.initalsHS} Score: ${showHighScore.totalHS} Time: ${showHighScore.finalTimeHS}`;
-            ul.appendChild(li);
+    for (let i = 0; i < getHighScore.length; i++ ) {
+        console.log(getHighScore.length);
+        let showHighScore = getHighScore[i];
+        let li = document.createElement("li");
+        li.textContent = `Initials: ${showHighScore.initalsHighscire} Score: ${showHighScore.totalHS} Time: ${showHighScore.finalTimeHighscore}`;
+        ul.appendChild(li);
         }}
 
 function initials() {
     timer.innerHTML = timeFinal;
     Quiz.classList.add("none");
     done.classList.remove("none");
-    submitInitials.addEventListener("click", function (event) {
+    finalScore.textContent = total
+    initialSubmit.addEventListener("click", function (event) {
         Value = document.getElementById("initials").value;
         console.log(Value);
         event.preventDefault();
-        localStorage();
+        scoreStorage();
         renderHighScores();    
 })}

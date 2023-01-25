@@ -40,3 +40,15 @@ function begining() {
     goToHighscore.addEventListener("click", renderHighScores);
     startButton.addEventListener("click", startGame);
 }
+
+let highScoreCatalogue = JSON.parse(localStorage.getItem("highScore")) || [];
+let highScore = {
+    totalHighscore: total,
+    finalTimeHighscore: finalTime,
+    initalsHighscire: initialsValue
+};
+document.getElementById("initials").value = "";
+if (highScore.initalsHighscire !== "") {
+highScoreCatalogue.push(highScore);
+}
+localStorage.setItem("highScore", JSON.stringify(highScoreCatalogue)); 
