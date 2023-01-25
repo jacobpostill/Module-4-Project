@@ -75,6 +75,7 @@ const quiz = [
 ]
 
 function timerStart() {
+    //In this function I start the timer countdown
     timer.textContent = timeRemaining;
     timerInterval = setInterval(function () {
         timeRemaining--;
@@ -87,6 +88,7 @@ function timerStart() {
 }
 
 function random() {
+    //In this function I created a random order so the questions generated randomly
     randomQuestion = [0,1,2,3,4,5,6,7,8,9];
     randomQuestion.sort((a, b) => 0.5 - Math.random());
 }
@@ -102,6 +104,7 @@ answer4.addEventListener("click", answer);
 
 var currQuestion;
 function nextQuestion() {
+    //In this function I set the quiz up that so once a question is answered it will go to the next one./
     if (games===9) {
         timerFinal = timeRemaining;
         clearInterval(timerInterval);
@@ -124,6 +127,7 @@ function nextQuestion() {
 start_button.addEventListener("click", start);
 
 function start() {
+    // This function starts the quiz
     quiz_intro.classList.add("none");
     start_button.classList.add("none");
     Quiz.classList.remove("none");
@@ -135,6 +139,7 @@ function start() {
 }
 
 function answerDisplay() {
+    //This fimctopm displays the ansers
     answerDisplay.innerText = answerText;
     rightWrong.classList.remove("none");
     let timeRemaining_2_Interval = setInterval(function (){
@@ -147,6 +152,7 @@ function answerDisplay() {
 }
 
 function answer(event) {
+    //This function generated the wrong or correct signs for each function
     rightWrong.classList.remove('wrong','right');
     event.target.innerText;
     console.log(event.target.innerText);
@@ -166,6 +172,7 @@ function answer(event) {
 
 
 function scoreStorage() {
+    //This function stores all the scores into the storage
     let highScoreCatalogue = JSON.parse(localStorage.getItem("highScore")) || [];
     let highScore = {
         totalHighscore: total,
@@ -177,6 +184,7 @@ function scoreStorage() {
 }
 
 function renderHighScores() {
+    //This functions renders the scoreboards with the high scores.
     done.classList.add("none");
     scoreboard.classList.remove("none");
     let getHighScore = JSON.parse(localStorage.getItem("highScore"));
@@ -190,6 +198,7 @@ function renderHighScores() {
     }
 
 function initials() {
+    //This function creates the insert for the initals.
     timer.innerHTML = timeFinal;
     Quiz.classList.add("none");
     done.classList.remove("none");
