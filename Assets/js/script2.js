@@ -1,46 +1,42 @@
+const question = document.querySelector(".Question");
+const options = document.querySelector(".options");
+const number = document.querySelector(".number");
+const start_button = document.getElementById("start-button");
+const Quiz = document.querySelector(".Quiz");
+const quiz_intro = document.querySelector(".quiz_intro");
+let timer = document.getElementById("timer");
+let games;
+let timeRemaining = 75;
+let counter;
+let score = 0;
+let timeFinal = 0
+let timerInterval;
+let timRemaining_2 = 3;
+const rightWrong = document.querySelector(".rightWrong.right");
 
-let answLen = [];
-let counter = 0;
-let currQuestion;
-let unansweredQuestion = []
+const answer1= document.getElementById("answer1");
+const answer2= document.getElementById("answer2");
+const answer3= document.getElementById("answer3");
+const answer4= document.getElementById("answer4");
 
-function setUnansweredQuestion(){
-    for(let i=0; i<quiz.length; i++){
-        unansweredQuestion.push(quiz[i]) 
-    }
-}
-function newQuestion(){
-    const questionAppendix = unansweredQuestion[Math.floor(Math.random() * unansweredQuestion.length)]
-    Question.innermmmHTML = questionAppendix.q;
-    const index_1 = unansweredQuestion.indexOf(questionAppendix);
-    unansweredQuestion.splice(index_1,1);
-    const answLen = currQuestion.options.length;
-    for(let i=0; i<answLen; i++){
-        unansweredQuestion.push(i)
-    }
-    for(let i=0; i<answLen; i++){
-        const opt = document.createElement("div");
-        const optionIndex = answLen[Math.floor(Math.random() *  answLen.length)];
-        opt.innerHTML = currQuestion.options[i];
-        opt.id = i;
-        opt.className = "option"
-        options.appendChild(option)
-    }
-    counter++;
-
-}
-
-function nextQuestion(){
-    if(counter === quiz.length){
-        console.log("quiz over");
-    }
-    else{
-        newQuestion()
-    }
-}
+function begining() {
+    games = -1;
+    timer.innerHTML = 0;
+    questionElement.classList.add("question-font-size");
+    questionElement.innerText = "The Coding Quiz";
+    startButton.innerText = "Start";
+    timer.classList.remove("hide");
+    highScoreLink.classList.remove("hide");
+    questionElement.classList.remove("hide");
+    welcomeQuiz.classList.remove("hide");
+    startButton.classList.remove("hide");
 
 
-window.onload = function(){
-    setUnansweredQuestion();
-    newQuestion();
+    initals.classList.add("hide");
+    answerButtonsElement.classList.add("hide");
+    restartButton.classList.add("hide");
+    ulAppend.classList.add("hide");
+
+    goToHighscore.addEventListener("click", renderHighScores);
+    startButton.addEventListener("click", startGame);
 }

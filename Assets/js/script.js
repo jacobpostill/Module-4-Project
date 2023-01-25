@@ -4,16 +4,25 @@ const number = document.querySelector(".number");
 const start_button = document.getElementById("start-button");
 const Quiz = document.querySelector(".Quiz");
 const quiz_intro = document.querySelector(".quiz_intro");
-let timer = document.getElementById("timeLeft");
+const answerOption = document.querySelector(".answer-options");
+let timer = document.getElementById("timer");
 let games =-1
 let timeRemaining = 75;
 let counter;
+let currQuestion
 let score = 0;
 let timeFinal = 0
 let timerInterval;
 let timRemaining_2 = 3;
 const rightWrong = document.getElementById("rightWrong");
+const done = document.querySelector(".done");
+const initialSubmit = document.getElementById("initialSubmit");
+const timeTitle = document.getElementById("timeTitle");
 
+
+Quiz.classList.add("none");
+done.classList.add("none");
+timeTitle.classList.add("none");
 
 const quiz = [
     {
@@ -45,7 +54,6 @@ const quiz = [
 
 ]
 
-
 function timerStart() {
     timer.textContent = timeRemaining;
     timerInterval = setInterval(function () {
@@ -53,7 +61,7 @@ function timerStart() {
         timer.textContent = timeRemaining;
         if (timeRemaining === 0) {
             clearInterval(timerInterval);
-            enterInitials()
+            initials()
         }
     }, 1000)
 }
@@ -76,7 +84,7 @@ function nextQuestion() {
     if (games===5) {
         timerFinal = timeRemaining;
         clearInterval(timerInterval);
-        return enterInitials();    
+        return initials();    
     }
     games++
     //questionSelector = random(games);
@@ -97,6 +105,8 @@ start_button.addEventListener("click", start);
 function start() {
     quiz_intro.classList.add("none");
     start_button.classList.add("none");
+    Quiz.classList.remove("none");
+    timeTitle.classList.remove("none");
     random();
     nextQuestion();
     timerStart();
@@ -104,33 +114,81 @@ function start() {
 }
 
 function answer(event) {
-    right-wrong.classList.remove('wrong');
-    right-wrong.classList.remove('right');
+    rightWrong.classList.remove('wrong','right');
     event.target.innerText;
     console.log(event.target.innerText);
-    if (currQuestion.answers[0] == event.target.innerText) {
+    if (quiz.answer == event.target.innerText) {
         total++;
         answerText = "Correct!";
-        answerText.classList.add('right');
+        rightWrong.classList.add('right');
     } else {
         timeRemaining = timeRemaining - 7;
-        answerText.classList.add('wrong');
+        rightWrong.classList.add('wrong');
         answerText = "Wrong!";
     }
-    setNextQuestion();
+    nextQuestion();
     answerDisplay();
 }
 
 function answerDisplay() {
     answerDisplay.innerText = answerText;
-    right-wrong.classList.remove("hide");
+    rightWrong.classList.remove("none");
     let timeRemaining_2_Interval = setInterval(function (){
         console.log(timRemaining_2);
         timRemaining_2--;
         if (timRemaining_2 === 0) {
-            right-wrong.classList.add("hide");
+            rightWrong.classList.add("none");
             clearInterval(timeRemaining_2_Interval);
         }
     }, 1000)
 }
 
+function localStorage() {
+    let highScoreCatalogue = JSON.parse(localStorage.getItem("highScore")) || [];
+    let highScore = {
+        totalHighscore: total,
+        finalTimeHighscore: finalTime,
+        initalsHighscire: initialsValue
+    };
+    document.getElementById("initials").value = "";
+    if (highScore.initalsHighscire !== "") {
+    highScoreCatalogue.push(highScore);
+    }
+    localStorage.setItem("highScore", JSON.stringify(highScoreCatalogue)); 
+}
+
+function renderHighScores() {
+    done.classList.add("none");
+    let getHighScore = JSON.parse(localStorage.getItem("highScore"));
+    questionElement.innerText = "HighScores";
+    initals.classList.add("hide");
+    welcomeQuiz.classList.add("hide");
+    restartButton.addEventListener("click", init);
+    restartButton.classList.remove("hide");
+    const ulAppend = document.getElementById("ulAppend");
+    ulAppend.classList.remove("hide");
+
+    let ul = document.createElement("ul");
+    ulAppend.innerText = "";
+    ulAppend.appendChild(ul);
+    
+        for (let i = 0; i < getHighScore.length; i++ ) {
+            console.log(getHighScore.length);
+            let showHighScore = getHighScore[i];
+
+            let li = document.createElement("li");
+            li.textContent = `Initials: ${showHighScore.initalsHS} Score: ${showHighScore.totalHS} Time: ${showHighScore.finalTimeHS}`;
+            ul.appendChild(li);
+        }}
+
+function initials() {
+    timer.innerHTML = timeFinal;
+    Quiz.classList.add("none");
+    done.classList.remove("none");
+    submitInitials.addEventListener("click", function (event) {
+        Value = document.getElementById("initials").value;
+        console.log(Value);
+        event.preventDefault();
+        localStorage();
+        renderHighScores();    
+})}
