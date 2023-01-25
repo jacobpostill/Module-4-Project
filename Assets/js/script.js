@@ -48,15 +48,30 @@ const quiz = [
         options:["While loop","Infinite loop","Recursive loop","for loop"],
         answer:"Infinite loop"
     },    {
-        question:"What is 9 + 9?",
-        options:["8","4","6","18"],
-        answer:"8"
+        question:"What is the full form of CPU?",
+        options:["Central Process Unit","Central Processing Unit","Central Programming Unit","Central Progressive Unit"],
+        answer:"Central Processing Unit"
     },    {
-        question:"What is 1 + 1?",
-        options:["8","4","6","2"],
-        answer:"2"
+        question:"Which electronics component is used in first generation computers?",
+        options:["Transistors","ULSI Chips","Vacuum Tubes","LSI Chips"],
+        answer:"Vacuum Tubes"
+    },    {
+        question:"Why OMR is used?",
+        options:["Scan mails","Scan images","Scan documents","Scan answer sheets"],
+        answer:"Scan answer sheets"
+    },    {
+        question:"One Nibble has?",
+        options:["2 Bits","4 Bits","8 Bits","16 Bits"],
+        answer:"4 Bits"
+    },     {
+        question:"Which is not an Operating System?",
+        options:["Windows","Macintosh","Linux","Open Office"],
+        answer:"Open Office"
+    },     {
+        question:"What is the full form of LAN?",
+        options:["Local Access Network","Local Area Network","Local Accelerator Network","Logical Area Network"],
+        answer:"Local Area Network"
     }
-
 ]
 
 function timerStart() {
@@ -72,7 +87,7 @@ function timerStart() {
 }
 
 function random() {
-    randomQuestion = [0,1,2,3,4,5];
+    randomQuestion = [0,1,2,3,4,5,6,7,8,9];
     randomQuestion.sort((a, b) => 0.5 - Math.random());
 }
 let answer1= document.getElementById("answer1");
@@ -87,7 +102,7 @@ answer4.addEventListener("click", answer);
 
 var currQuestion;
 function nextQuestion() {
-    if (games===5) {
+    if (games===9) {
         timerFinal = timeRemaining;
         clearInterval(timerInterval);
         return initials();    
@@ -119,6 +134,18 @@ function start() {
 
 }
 
+function answerDisplay() {
+    answerDisplay.innerText = answerText;
+    rightWrong.classList.remove("none");
+    let timeRemaining_2_Interval = setInterval(function (){
+        console.log(timRemaining_2);
+        timRemaining_2--;
+        if (timRemaining_2 === 0) {
+            rightWrong.classList.add("none");
+            clearInterval(timeRemaining_2_Interval);}
+    }, 1000)
+}
+
 function answer(event) {
     rightWrong.classList.remove('wrong','right');
     event.target.innerText;
@@ -132,36 +159,20 @@ function answer(event) {
         timeRemaining = timeRemaining - 7;
         rightWrong.classList.add('wrong');
         answerText = "Wrong!";
-        rightWrong.textContent = answerText 
-    }
+        rightWrong.textContent = answerText }
     nextQuestion();
     answerDisplay();
 }
 
-function answerDisplay() {
-    answerDisplay.innerText = answerText;
-    rightWrong.classList.remove("none");
-    let timeRemaining_2_Interval = setInterval(function (){
-        console.log(timRemaining_2);
-        timRemaining_2--;
-        if (timRemaining_2 === 0) {
-            rightWrong.classList.add("none");
-            clearInterval(timeRemaining_2_Interval);
-        }
-    }, 1000)
-}
 
 function scoreStorage() {
     let highScoreCatalogue = JSON.parse(localStorage.getItem("highScore")) || [];
     let highScore = {
         totalHighscore: total,
-        finalTimeHighscore: timeFinal,
-        initalsHighscire: Value
-    };
+        initalsHighscire: Value};
     document.getElementById("initials").value = "";
     if (highScore.initalsHighscire !== "") {
-    highScoreCatalogue.push(highScore);
-    }
+    highScoreCatalogue.push(highScore);}
     localStorage.setItem("highScore", JSON.stringify(highScoreCatalogue)); 
 }
 
