@@ -173,9 +173,10 @@ function renderHighScores() {
         console.log(getHighScore.length);
         let showHighScore = getHighScore[i];
         let li = document.createElement("li");
-        li.textContent = `Initials: ${showHighScore.initalsHighscire} Score: ${showHighScore.totalHS} Time: ${showHighScore.finalTimeHighscore}`;
-        ul.appendChild(li);
-        }}
+        li.textContent = `Initials: ${showHighScore.initalsHighscire} Score: ${showHighScore.totalHighscore} Time: ${showHighScore.finalTimeHighscore}`;
+        players.appendChild(li);  
+        }
+    }
 
 function initials() {
     timer.innerHTML = timeFinal;
